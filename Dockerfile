@@ -15,4 +15,4 @@ RUN ls -la target
 EXPOSE 8080
 
 # pega o jar explicitamente (SEM *)
-CMD ["java", "-jar", "target/seu-app.jar"]
+CMD ["sh", "-c", "java -jar target/*.jar"]
