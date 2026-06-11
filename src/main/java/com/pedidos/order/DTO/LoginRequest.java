@@ -1,4 +1,4 @@
-package com.pedidos.order.DTO;
+package com.pedidos.order.dto;
 
 public class LoginRequest {
     private String email;
