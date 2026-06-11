@@ -3,6 +3,7 @@ package com.pedidos.order.controller;
 import com.pedidos.order.bancodedados.BancoPedidos;
 import com.pedidos.order.model.Pedidos;
 import com.pedidos.order.service.PedidosService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,5 +27,11 @@ public class PedidosController {
     @GetMapping("/pedidos")
     public List<Pedidos> order(){
         return pedidosService.getBancoPedidos();
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> Limpar(){
+        pedidosService.limparhistorico();
+        return ResponseEntity.noContent().build();
     }
 }

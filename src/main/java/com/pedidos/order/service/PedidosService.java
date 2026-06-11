@@ -32,8 +32,6 @@ public class PedidosService {
         double totalFinal = total;
 
         // taxa base
-        totalFinal += 2.00;
-
         if (
                 bairro.equalsIgnoreCase("novo horizontino") ||
                         bairro.equalsIgnoreCase("maria manteiga")
@@ -47,7 +45,13 @@ public class PedidosService {
                         bairro.equalsIgnoreCase("antonio lopez")
         ) {
             totalFinal += 4.00;
+        }else if(total < 35){
+            totalFinal += 2.00;
+        }else{
+            totalFinal += 0;
         }
+
+
 
         Pedidos pedidos = new Pedidos();
         pedidos.setNome(nome);
@@ -100,5 +104,10 @@ public class PedidosService {
 
     public List<Pedidos> getBancoPedidos() {
         return bancoPedidos.getPedidos();
+    }
+
+    //LIMPAR HISTORICO
+    public void limparhistorico(){
+         bancoPedidos.getPedidos().clear();
     }
 }
