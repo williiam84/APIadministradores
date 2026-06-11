@@ -31,8 +31,7 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody String email,
-                        String senha){
-        return adminService.login(email, senha);
-    }
+public ResponseEntity<?> login(@RequestBody LoginRequest dados){
+    return ResponseEntity.ok(adminService.login(dados));
+}
 }
