@@ -40,7 +40,8 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void Deletar(@PathVariable Integer id){
+    public ResponseEntity<Void> Deletar(@PathVariable Integer id){
         adminService.deletarAdministrador(id);
+        return ResponseEntity.ok(). build();
     }
 }
