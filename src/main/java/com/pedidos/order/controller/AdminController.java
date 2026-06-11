@@ -1,6 +1,7 @@
 package com.pedidos.order.controller;
 
 import com.pedidos.order.bancodedados.BancoAdmin;
+import com.pedidos.order.dto.LoginRequest;
 import com.pedidos.order.model.Admin;
 import com.pedidos.order.service.AdminService;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,9 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody LoginRequest dados){
-    return ResponseEntity.ok(adminService.login(dados));
-}
+    public ResponseEntity<?> login(@RequestBody LoginRequest dados){
+        return ResponseEntity.ok(
+                adminService.login(dados.getEmail(), dados.getSenha())
+        );
+    }
 }
