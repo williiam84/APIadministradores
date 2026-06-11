@@ -5,10 +5,7 @@ import com.pedidos.order.model.Admin;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class AdminService {
@@ -19,19 +16,22 @@ public class AdminService {
         this.bancoAdmin = bancoAdmin;
         this.administradores = administradores;
     }
-
+    //CONTADOR
+    int contador = 0;
     //CADASTRAR ADMIN
-    public Admin RegisterAdmin(String usuario, String email, String senha){
+    public Admin RegisterAdmin(String usuario, String email, String senha, Integer id){
+        contador++;
         Admin admin = new Admin();
         admin.setUsuario(usuario);
         admin.setEmail(email);
         admin.setSenha(senha);
+        admin.setId(contador);
         return admin;
     }
 
     //SALAVAR
-    public Admin saveAdmin(String usuario, String email, String senha){
-        Admin admin = RegisterAdmin(usuario, email, senha);
+    public Admin saveAdmin(String usuario, String email, String senha, Integer id){
+        Admin admin = RegisterAdmin(usuario, email, senha, id);
         bancoAdmin.getAdministradores().add(admin);
         return admin;
     }
@@ -60,6 +60,25 @@ public class AdminService {
         }
 
         return "ALGO ESTÁ INCORRETO";
+    }
+
+    //BUSCAR O ID
+    public Admin BuscarporId(Integer id){
+        return administradores.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    //EXCLUIR
+    public boolean deletarAdministrador(Integer id) {
+        Admin admin = BuscarporId(id);
+
+        if (admin != null) {
+            return administradores.remove(admin);
+        }
+
+        return false;
     }
 
     public boolean tokenValido(String token){

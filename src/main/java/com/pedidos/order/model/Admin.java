@@ -4,11 +4,13 @@ public class Admin {
     private String usuario;
     private String email;
     private String senha;
+    Integer id;
 
-    public Admin(String usuario, String email, String senha){
+    public Admin(String usuario, String email, String senha, Integer id){
         this.usuario = usuario;
         this.email = email;
         this.senha = senha;
+        this.id = id;
     }
 
     public Admin(){
@@ -37,5 +39,13 @@ public class Admin {
 
     public void setSenha(String senha){
         this.senha = senha;
+    }
+
+    public Integer getId(){
+        return this.id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 }
